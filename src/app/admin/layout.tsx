@@ -1,8 +1,7 @@
 
 import Link from "next/link";
 import { requireAdmin } from "@/lib/auth/session";
-
-export const instant = false;
+import AdminNav from "./admin-nav";
 
 export default async function AdminLayout({
   children,
@@ -20,22 +19,22 @@ export default async function AdminLayout({
           </Link>
 
           <div className="flex items-center gap-5">
-  <Link
-    href="/"
-    className="text-sm font-medium text-muted hover:text-primary"
-  >
-    View Storefront →
-  </Link>
+            <Link
+              href="/"
+              className="text-sm font-medium text-muted hover:text-primary"
+            >
+              View Storefront →
+            </Link>
 
-  <form action="/api/auth/logout" method="POST">
-    <button
-      type="submit"
-      className="text-sm font-medium text-[#a05243] hover:underline"
-    >
-      Logout
-    </button>
-  </form>
-</div>
+            <form action="/api/auth/logout" method="POST">
+              <button
+                type="submit"
+                className="text-sm font-medium text-[#a05243] hover:underline"
+              >
+                Logout
+              </button>
+            </form>
+          </div>
         </div>
       </header>
 
@@ -45,23 +44,7 @@ export default async function AdminLayout({
             Administration
           </p>
 
-          <nav className="flex flex-col gap-3 text-sm">
-            <Link href="/admin" className="rounded-lg bg-secondary px-3 py-2 font-medium text-primary">
-              Dashboard
-            </Link>
-            <Link href="/admin/products" className="px-3 py-2 hover:text-primary">
-              Products
-            </Link>
-            <Link href="/admin/orders" className="px-3 py-2 hover:text-primary">
-              Orders
-            </Link>
-            <Link href="/admin/inventory" className="px-3 py-2 hover:text-primary">
-              Inventory
-            </Link>
-            <Link href="/admin/reports" className="px-3 py-2 hover:text-primary">
-              Reports
-            </Link>
-          </nav>
+          <AdminNav />
         </aside>
 
         <main className="min-w-0 flex-1">{children}</main>
